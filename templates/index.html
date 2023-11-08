@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Palette Generator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Caveat:wght@500;700&family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <style>
+    body {
+      font-family: 'Caveat Brush', cursive;
+    }
+    </style>
+
+</head>
+<body>
+    <div class="floating-text">
+            <h1 style="color: white;">Colour Palette Generator</h1>
+    </div>
+
+    <h2 style="color: white; display: flex; justify-content: center; align-items: center; padding-top:50px">Let's generate a palette from your pictures!</h2>
+    <div style="display: flex; justify-content: center; align-items: center; padding-top: 15px">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="imageInput">1. Select an image:</label>
+            <input type="file" id="imageInput" name="imageInput" accept="image/jpeg">
+            <label for="submit">2. Upload the image:</label>
+            <input id='submit' type="submit" value="Upload Image">
+        </form>
+    </div>
+    <p style='color: white; text-align: center; font-size: 30px; padding-top: 150px' id="selectedFileName"></p>
+     {% if no_image %}
+        <script>
+            function showAlert() {
+                alert("To generate a palette, please select an image!");
+            }
+            showAlert();
+        </script>
+    {% endif %}
+
+</body>
+
+<script>
+        // Get the file input element
+    const fileInput = document.getElementById('imageInput');
+
+    // Get the element where the selected file name will be displayed
+    const selectedFileName = document.getElementById('selectedFileName');
+
+    // Add an event listener to the file input to update the displayed file name
+    fileInput.addEventListener('change', function () {
+        if (fileInput.files.length > 0) {
+            selectedFileName.textContent = `Selected File: ${fileInput.files[0].name}`;
+        } else {
+            selectedFileName.textContent = ''; // Clear the displayed name if no file is selected
+        }
+    });
+
+</script>
+</html>
+
