@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 import numpy as np
 from PIL import Image
-from sklearn.cluster import KMeans
 
 app = Flask(__name__)
 
